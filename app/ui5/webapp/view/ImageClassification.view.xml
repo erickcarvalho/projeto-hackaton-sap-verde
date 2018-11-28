@@ -56,14 +56,5 @@
                     </m:items>
                 </m:FlexBox>
             </m:FlexBox>
-            <m:Table 
-                    id="table" 
-                    visible="false" 
-                    width="auto" 
-                    items="{path: '/results'}">
-                <m:items>
-                    <m:ColumnListItem></m:ColumnListItem>
-                </m:items>
-            </m:Table>
     </m:Page>
 </core:View>
