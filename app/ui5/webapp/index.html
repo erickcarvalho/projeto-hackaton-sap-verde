@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto Hackaton Machine Learning e Chatbot - Time Verde</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/image.css">
+    <link rel='shortcut icon' href='./images/favicon.ico'>
+    <link rel='icon' sizes='16x16 32x32 64x64' href='./images/favicon.ico'>
+    <!-- Bootstrap the UI5 core library -->
+    <script id="sap-ui-bootstrap" 
+            src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js" 
+            data-sap-ui-libs="sap.ushell, sap.collaboration"
+            data-sap-ui-theme="sap_belize_plus" 
+            data-sap-ui-compatVersion="edge" 
+            data-sap-ui-resourceroots='{"sap.mlf.timeverde": "../"}'>
+    </script>
+    
+    <script>
+        sap.ui.getCore().attachInit(function () {
+            new sap.m.Shell({
+                app: new sap.ui.core.ComponentContainer({
+                    height: "100%",
+                    name: "sap.mlf.timeverde"
+                })
+            }).placeAt("content");
+        });
+    </script>
+
+</head>
+
+<body class="sapUiBody" id="content">
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+.sapUiRFL {
+    position: relative;
+    display: inline-block;
+    width: 90%;
+    margin-left: 5%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.loader {
+	display: block;
+    margin-top: 150px;
+    display: none;
+}
+
+.errorTitle {
+    margin-top: 25px;
+    margin-left: 60px;
+    display: none;
+    color: #C0392B;
+}
+
+.errorTxt {
+	text-align: justify;
+    margin-top: 20px;
+    margin-left: 80px;
+    margin-right: 80px;
+    display: none;
+}
+
+/*TODO: find a solution for addressing of generic IDs*/
+#__label0-cont0_0, #__label1-cont0_0, #__label2-cont0_0, #__label3-cont0_0, #__label4-cont0_0, #__label5-cont0_0, #__label6-cont0_0, #__label7-cont0_0, #__label8-cont0_0, #__label9-cont0_0, #__label10-cont0_0 {
+	width: 130px !important;
+	min-width: 0 !important;
+}
+
+#__element0--RFLayout, #__element1--RFLayout, #__element2--RFLayout, #__element3--RFLayout, #__element4--RFLayout, #__element5--RFLayout {
+	margin-left: 0 !important;	
+}

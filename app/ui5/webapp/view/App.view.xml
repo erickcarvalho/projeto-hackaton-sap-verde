@@ -1,0 +1,6 @@
+<core:View 
+    xmlns:m="sap.m"
+    xmlns:core="sap.ui.core">
+    <m:App id="idAppControl">
+    </m:App>
+</core:View>
