@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="./css/image.css">
     <link rel='shortcut icon' href='./images/favicon.ico'>
     <link rel='icon' sizes='16x16 32x32 64x64' href='./images/favicon.ico'>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <!-- Bootstrap the UI5 core library -->
     <script id="sap-ui-bootstrap" 
             src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js" 
@@ -29,42 +30,39 @@
             }).placeAt("content");
         });
     </script>
-
-<script src="https://cdn.recast.ai/webchat/webchat.js" 
-        channelId="63babef6-b8e1-4b7a-963f-a60fa1f1ff12" 
-        token="35f7beda6b82f6116fc2ca59f3f02373"
-        id="recast-webchat"></script>
-
-<script>
-    var chatId;
-    function getChatIDFromCookies() {
-        setTimeout(function () {
-            try {
-                var credentials = Cookies.get('recast-conversation');
-                // console.log("credentials: ", credentials);
-                if (credentials) {
-                    credentials = JSON.parse(credentials);
-                    chatID = credentials.chatId;
-                    //Save chatID and parameters on backend
-                    saveChatIDAndURLParametersOnBackend();
-                } else {
-                    getChatIDFromCookies();
-                }
-            } catch (ex) {
-                console.log(ex);
-            }
-        }, 1);
-    };
-    getChatIDFromCookies();
-
-//alert(chatID);
-
-</script>
-
-
 </head>
 
-<body class="sapUiBody" id="content">
+<body>
+    <script src="./webchat.js" channelId="63babef6-b8e1-4b7a-963f-a60fa1f1ff12" token="35f7beda6b82f6116fc2ca59f3f02373" id="recast-webchat">
+    </script>
+    
+    <script>
+        var chatId;
+        function getChatIDFromCookies() {
+            setTimeout(function () {
+                try {
+                    var credentials = Cookies.get('recast-conversation');
+                    // console.log("credentials: ", credentials);
+                    if (credentials) {
+                        credentials = JSON.parse(credentials);
+                        chatId = credentials.chatId;
+                    } else {
+                        getChatIDFromCookies();
+                    }
+                } catch (ex) {
+                    console.log(ex);
+                }
+            }, 1);
+        };
+        getChatIDFromCookies();
+
+        //alert(chatID);
+
+    </script>
+    
+    <div class="sapUiBody" id="content">
+    </div>
+
 </body>
 
 </html>

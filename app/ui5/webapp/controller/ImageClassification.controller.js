@@ -78,6 +78,28 @@ sap.ui.define([
 			}).done(function (response) {
 				try {
 					var response = $.parseJSON(response);
+
+					var request = require("request");
+
+					var options = {
+						method: 'POST',
+						url: 'https://api.recast.ai/connect/v1/conversations/b9cd14b7-9c37-4f43-8266-5010bc633e6b/messages',
+						headers:
+						{							
+							"Authorization": 'Token 727617ff1da5c2ede8d3dc15dc0130ce',
+							'Content-Type': 'application/json'
+						},
+						body: { messages: [{ type: 'text', content: response.predictions[0].results[0].label }] },
+						json: true
+					};
+
+					request(options, function (error, response, body) {
+						if (error) throw new Error(error);
+
+						console.log(body);
+					});
+
+
 					oBusyIndicator.close();
 				} catch (err) {
 					oBusyIndicator.close();
