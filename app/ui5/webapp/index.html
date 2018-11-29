@@ -30,6 +30,38 @@
         });
     </script>
 
+<script src="https://cdn.recast.ai/webchat/webchat.js" 
+        channelId="63babef6-b8e1-4b7a-963f-a60fa1f1ff12" 
+        token="35f7beda6b82f6116fc2ca59f3f02373"
+        id="recast-webchat"></script>
+
+<script>
+    var chatId;
+    function getChatIDFromCookies() {
+        setTimeout(function () {
+            try {
+                var credentials = Cookies.get('recast-conversation');
+                // console.log("credentials: ", credentials);
+                if (credentials) {
+                    credentials = JSON.parse(credentials);
+                    chatID = credentials.chatId;
+                    //Save chatID and parameters on backend
+                    saveChatIDAndURLParametersOnBackend();
+                } else {
+                    getChatIDFromCookies();
+                }
+            } catch (ex) {
+                console.log(ex);
+            }
+        }, 1);
+    };
+    getChatIDFromCookies();
+
+//alert(chatID);
+
+</script>
+
+
 </head>
 
 <body class="sapUiBody" id="content">
