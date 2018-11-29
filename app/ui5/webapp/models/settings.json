@@ -1,0 +1,11 @@
+{
+    "urls": [
+        {
+            "name": "Image Classifier",
+            "url": "/ml/imageclassification/classification",
+            "headers": {
+                "APIKey": "oJlUbxAkeVtlE3ir79UOQHAGHucbmzmr"
+            }
+        }
+    ]
+}
