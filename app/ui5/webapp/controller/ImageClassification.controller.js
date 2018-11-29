@@ -75,38 +75,76 @@ sap.ui.define([
 				"contentType": false,
 				"mimeType": "multipart/form-data",
 				"data": data
-			}).done(function (response) {
+			}).done(function (res) {
+				
 				try {
-					var response = $.parseJSON(response);
-
-					var request = require("request");
-
-					var options = {
-						method: 'POST',
-						url: 'https://api.recast.ai/connect/v1/conversations/b9cd14b7-9c37-4f43-8266-5010bc633e6b/messages',
-						headers:
-						{							
-							"Authorization": 'Token 727617ff1da5c2ede8d3dc15dc0130ce',
-							'Content-Type': 'application/json'
-						},
-						body: { messages: [{ type: 'text', content: response.predictions[0].results[0].label }] },
-						json: true
-					};
-
-					request(options, function (error, response, body) {
-						if (error) throw new Error(error);
-
-						console.log(body);
-					});
-
-
-					oBusyIndicator.close();
-				} catch (err) {
-					oBusyIndicator.close();
-					that.displayErrorBox("Caught error: " + err.message);
+					var resp = $.parseJSON(res);
 				}
+				catch(err){
+					console.log("error");
+				}
+
+				var element ;
+				if (JSON.stringify(resp.predictions[0].results[0].label) == "VinhoBranco") element = "White Wine"
+				else if (JSON.stringify(resp.predictions[0].results[0].label) == "VinhoTinto") element = "Red Wine"
+				else element = JSON.stringify(resp.predictions[0].results[0].label);
+
+				let data2 = { "messages": [{ "type": "text", "content": element }] };
+				
+				var settings = {
+					"async": true,
+					"crossDomain": true,
+					"url": "https://api.recast.ai/connect/v1/conversations/97ec5309-338c-4ce8-8e19-10ae84d68ef8/messages",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json",
+						"Authorization": "Token 727617ff1da5c2ede8d3dc15dc0130ce"
+					},
+					"processData": false,
+					"data": JSON.stringify(data2)
+				}
+
+				// "{\"messages\":[{\"type\":\"text\",\"content\":\"Heineken\"}]}"
+				$.ajax(settings).done(function (response) {
+					console.log(response);
+					oBusyIndicator.close();
+				});
+
+
+				// try {
+				// 	let response = $.parseJSON(res);
+					
+				// 	let headers2 = {
+				// 		"Authorization": 'Token 727617ff1da5c2ede8d3dc15dc0130ce'
+				// 	}
+					
+				// 	let data2 = ({ 'messages': [{ type: 'text', content: response.predictions[0].results[0].label }] });
+
+				// 	$.ajax({
+				// 		"async": true,
+				// 		"url": "https://api.recast.ai/connect/v1/conversations/b9cd14b7-9c37-4f43-8266-5010bc633e6b/messages",
+				// 		"method": "POST",
+				// 		"headers": headers2,
+				// 		"processData": false,
+				// 		"Content-Type": "application/json",
+				// 		"data": JSON.stringify(data2)
+				// 	}).done(function(res){
+				// 		try {
+				// 			console.log("Sucesso - Mensagem enviada para o bot" + res);
+				// 		} catch (err) {
+				// 			oBusyIndicator.close();
+				// 			that.displayErrorBox("Caught error: " + err.message);
+				// 		}
+				// 		}).fail(function (err){
+				// 			oBusyIndicator.close();
+				// 			console.log(err);
+				// 		});
+				// 	}
+				// catch (err) {
+				// 	oBusyIndicator.close();
+				// 	that.displayErrorBox("Caught error: " + err.message);
+				// }
 			}).fail(function (jqXHR, textStatus) {
-				var response = $.parseJSON(jqXHR.responseText);
 				oBusyIndicator.close();
 				that.displayErrorBox("Caught error: " + jqXHR.statusText + "\n\n Info: " + response.error.message);
 			});
