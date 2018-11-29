@@ -33,7 +33,7 @@
                 <u:FileUploader 
                     id="fileUploader" 
                     name="myFileUpload" 
-                    tooltip="Upload any image" 
+                    tooltip="{i18n>uploadImage}" 
                     typeMissmatch="handleTypeMissmatch" 
                     class="fileUploaderStyle" 
                     buttonOnly="true" 
