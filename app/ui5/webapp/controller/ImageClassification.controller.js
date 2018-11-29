@@ -78,19 +78,6 @@ sap.ui.define([
 			}).done(function (response) {
 				try {
 					var response = $.parseJSON(response);
-					var model = oView.getModel().getData();
-					model["json" + i] = JSON.stringify(response, null, "\t");
-					for (var j = 0; j < model.results.length; j++) {
-						if (response.predictions[0].results[j].score > 0.01) {
-							model.results[j].score[i] = Math.round(response.predictions[0].results[j].score * 1000) / 10;
-						} else {
-							model.results[j].score[i] = Math.round(response.predictions[0].results[j].score * 100000) / 1000;
-						}
-
-						var l = response.predictions[0].results[j].label;
-						model.results[j].label[i] = ((l[0] + "").toUpperCase()) + l.substring(1, l.length);
-					}
-					oView.getModel().refresh();
 					oBusyIndicator.close();
 				} catch (err) {
 					oBusyIndicator.close();
